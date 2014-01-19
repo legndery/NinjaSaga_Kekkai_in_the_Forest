@@ -1,0 +1,51 @@
+This solves the Ninja Saga Kekkai in the Forrest TP mission FOR THE 5 SYMBOL SEAL(NOT 5 SYMBOL). It would need the User Imput Based On the Yellow and Green Box.
+
+
+Algorithm:
+
+First,
+
+Initializtions:
+1) a Two Dimentional Array of All the Possible Permutations of the Colors, name is result[]; Total of 720 rows each of 5 coloumns.
+2) an Array for First List of colors to be used as Input. first[];
+3) a Two Dimitentional array for Holding the Yellow and Green Values for each result[i];where 0<i<720 in perspective[]
+4) a dictioanry for Mapping the integers to colours. map[];
+
+Functions:
+CalculateGreen: input=> (two arrays(input1[], input2[]))
+	for 0<=i<=5
+		if input1[i] == input2[i]
+		then green is increamented by 1;
+	return green;
+
+CalculateYellow:input=> (two arrays (input1[], input2[]), CalculateGreen(input1[], input2[]))
+	for each values in input1[]
+		if the value exists in input2[]
+		then yellow is incremented by 1;
+	retrun yellow-green;
+STEPS:
+
+1) First the result[] is populated with the possible colour combinations. like, 
+result ={ 
+	{1,2,3,4,5},
+	{2,1,4,5,6},
+	.
+	and so on
+	.}
+2) So we have 720 possible values. Now The first[] is assigned with result[0];
+this first[] array is our working set.
+
+3) Now we have to CalculateGreen(first[], each result[i]) and CalculateYellow(first[], each result[i], green) and put it into perspective[i][]
+
+4) After entering the Values indicated by first[] in the Ninja Saga flash game, we get a set of values for Yellow and Green.
+Now, after inserting the value to this program we have two variables YellowInput and GreenInput
+
+5) Filter the perspective[] and result[]. 
+	for each values in perspective[]:
+		if perspective[i][0] != GreenInput OR perspective[i][1] != YellowInput:
+			then delete(perspective[i]) and delete(result[i])
+
+
+6) repeat step 2 and step 3;
+
+7) repeat step 4, 5, 6 untill the seal is broken
